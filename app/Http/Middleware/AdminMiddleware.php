@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
+
+class AdminMiddleware
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        if(Auth::user()->role_id != 2)
+        {
+            Auth::logout();
+
+            session()->flush();
+
+            return redirect()->back()->with('messeges', 'You Dont Have Previllage !');
+        }
+        // $eloquentVersion = Auth::user()->role_id;
+
+        // dd(Roles::find($eloquentVersion));
+        return $next($request);
+    }
+}
