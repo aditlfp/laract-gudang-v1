@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderStuffController;
 use App\Http\Controllers\PieceController;
@@ -37,16 +38,18 @@ Route::get('/test', function ()
     dd(Roles::find($eloquentVersion));
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified', 'check_role'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('orders', OrderStuffController::class);
+    
 });
 
 Route::middleware(['auth', 'adm'])->prefix('admin')->group(function () {
-    Route::resource('orders', OrderStuffController::class);
+    Route::get('/admin-panel', [AdminController::class, 'index'])->name('panel');
     Route::resource('pieces', PieceController::class);
     Route::resource('stock-stuffs', StockStuffController::class);
 });
