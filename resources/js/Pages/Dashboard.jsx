@@ -5,6 +5,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage } from '@inertiajs/react';
 
 export default function Dashboard({ user, order }) {
+
+    console.log(order);
+
     return (
         <AuthenticatedLayout
             auth={user}
