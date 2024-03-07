@@ -20,7 +20,9 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@arismun/format-rupiah": "^3.0.0",
         "daisyui": "^4.7.2",
+        "dayjs": "^1.11.10",
         "react-icons": "^4.12.0",
         "tailgrids": "^2.1.0"
     }

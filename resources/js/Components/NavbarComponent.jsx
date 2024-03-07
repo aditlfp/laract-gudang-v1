@@ -1,16 +1,22 @@
 import { FaSignOutAlt } from "react-icons/fa";
 
 export default function NavbarComponent({ auth }) {
+    // console.log(auth);
     return (
-    <>
-        <div className="navbar bg-base-100">
-            <div className="navbar-start">
-                <span className="text-lg bg-gray-100 rounded-md p-3 font-semibold mx-2">{ auth.name }</span>
+        <>
+            <div className="navbar fixed top-0 bg-base-100 rounded-b-md drop-shadow-md">
+                <div className="navbar-start">
+                    <span className="text-sm bg-gray-100 rounded-md p-4 font-semibold mx-2">
+                        {auth.nama_lengkap}
+                    </span>
+                </div>
+                <div className="navbar-end">
+                    <a className="btn btn-error text-white text-md">
+                        <span>Logout</span>
+                        <FaSignOutAlt />
+                    </a>
+                </div>
             </div>
-            <div className="navbar-end">
-                <a className="btn btn-error text-white text-xl"><FaSignOutAlt /></a>
-            </div>
-            </div>
-    </>
-  )
+        </>
+    );
 }
