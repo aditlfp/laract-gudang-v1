@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderStuff;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,8 @@ class DashboardController extends Controller
     {
         $userAuth = Auth::user()->id;
         $user = User::on('mysqlSecond')->where('id', $userAuth)->firstOrFail();
-        return Inertia::render('Dashboard', ['user' => $user]);
+
+        $order = OrderStuff::orderBy('created_at' , 'desc')->get();
+        return Inertia::render('Dashboard', compact('user', 'order'));
     }
 }

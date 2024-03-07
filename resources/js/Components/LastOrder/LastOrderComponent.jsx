@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LastOrderComponent() {
+function LastOrderComponent({ order }) {
   return (
     <>
     <span className='text-semibold flex justify-start mx-5 font-semibold'>

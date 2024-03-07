@@ -4,7 +4,7 @@ import MenuMobile from '@/Components/MenuMobile';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage } from '@inertiajs/react';
 
-export default function Dashboard({ user }) {
+export default function Dashboard({ user, order }) {
     return (
         <AuthenticatedLayout
             auth={user}
@@ -12,7 +12,7 @@ export default function Dashboard({ user }) {
         >
             <Head title="Dashboard" />
             <HeroComponent />
-            <LastOrderComponent />
+            <LastOrderComponent order={order}/>
             <MenuMobile />
         </AuthenticatedLayout>
     );
