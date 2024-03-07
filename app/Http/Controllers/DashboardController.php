@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $userAuth = Auth::user()->id;
         $user = User::on('mysqlSecond')->where('id', $userAuth)->firstOrFail();
 
-        $order = OrderStuff::orderBy('created_at' , 'desc')->get();
+        $order = OrderStuff::orderBy('created_at' , 'desc')->with('client')->get();
         return Inertia::render('Dashboard', compact('user', 'order'));
     }
 }
