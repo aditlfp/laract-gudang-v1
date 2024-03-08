@@ -1,42 +1,36 @@
 import OrderIndex from "@/Components/Order/OrderIndex";
 import OrderCreate from "@/Components/Order/OrderCreate";
 import { useState } from "react";
-import { FaSignOutAlt } from "react-icons/fa";
 import { PiPackageDuotone } from "react-icons/pi";
-import { RiAddFill, RiBookReadLine } from "react-icons/ri";
-import { Link, usePage } from "@inertiajs/react";
+import {  RiBookReadLine } from "react-icons/ri";
+import { Head } from "@inertiajs/react";
+import NavbarComponent from "@/Components/NavbarComponent";
 
 export default function Index({ user, order }) {
-    const [isCrut, setIsCrut] = useState("admin");
+    const [component, setComponent] = useState("admin");
 
     let isLink;
-    if (isCrut === "orderI") {
+    if (component === "orderI") {
         isLink = <OrderIndex order={order} />;
-    } else if (isCrut === "orderC") {
+    } else if (component === "orderC") {
         isLink = <OrderCreate />;
     }
     // console.log(usePage().props.ziggy.location);
     return (
         <>
-            <div class="min-h-screen">
-                <div className="flex w-full h-[10vh] justify-between items-center bg-[#333A73] px-5 py-4">
-                    <span className="text-white capitalize">
-                        {user?.nama_lengkap}
-                    </span>
-                    <a className="btn btn-error text-white text-md">
-                        <span>Logout</span>
-                        <FaSignOutAlt />
-                    </a>
-                </div>
+            <Head title="ADMIN PANEL"/>
+            <div class="min-h-screen bg-sky-100">
+                <NavbarComponent auth={user}/>
                 <div className="w-full h-[90vh] flex gap-4">
-                    <div className="w-1/4 m-5 p-2 drop-shadow-md bg-teal-500 rounded-lg ">
+                    <div className="w-1/4 m-5 p-2 drop-shadow-md bg-sky-500 rounded-lg ">
                         <span>
-                            <p className="text-center text-white">Menu Admin</p>
+                            <p className="text-center text-white font-semibold">Menu Admin</p>
+                            <hr />
                             <ul className="menu">
                                 <li>
                                     <details>
-                                        <summary className=" w-full">
-                                            <span className="flex items-center gap-2">
+                                        <summary className="w-full">
+                                            <span className="flex items-center gap-2 text-base font-medium">
                                                 <PiPackageDuotone />{" "}
                                                 <p>Order</p>
                                             </span>
@@ -47,17 +41,11 @@ export default function Index({ user, order }) {
                                                     <RiBookReadLine />
                                                     <button
                                                         onClick={() =>
-                                                            setIsCrut("orderI")
+                                                            setComponent("orderI")
                                                         }
                                                     >
-                                                        Index
+                                                        Data Orders
                                                     </button>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span className="flex gap-2">
-                                                    <RiAddFill />
-                                                    <button>create</button>
                                                 </span>
                                             </li>
                                         </ul>
