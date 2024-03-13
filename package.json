@@ -23,6 +23,7 @@
         "@arismun/format-rupiah": "^3.0.0",
         "daisyui": "^4.7.2",
         "dayjs": "^1.11.10",
+        "framer-motion": "^11.0.8",
         "react-icons": "^4.12.0",
         "tailgrids": "^2.1.0"
     }
